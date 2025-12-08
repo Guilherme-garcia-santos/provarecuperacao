@@ -1,0 +1,65 @@
+### Cadastrar João Silva
+POST http://localhost:5169/api/consumo/cadastrar
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "peso": 70
+}
+
+### Cadastrar Maria Souza
+POST http://localhost:5169/api/consumo/cadastrar
+Content-Type: application/json
+
+{
+  "nome": "Maria Souza",
+  "peso": 40
+}
+
+### Cadastrar Pedro Costa
+POST http://localhost:5169/api/consumo/cadastrar
+Content-Type: application/json
+
+{
+  "nome": "Pedro Costa",
+  "peso": 90
+}
+
+
+### Listar todos os consumos cadastrados
+GET http://localhost:5169/api/consumo/listar
+
+
+### Listar somente BAIXO consumo
+GET http://localhost:5169/api/consumo/listarporstatus/Baixo%20consumo
+
+### Listar somente CONSUMO ADEQUADO
+GET http://localhost:5169/api/consumo/listarporstatus/Consumo%20adequado
+
+### Listar somente ALTO consumo
+GET http://localhost:5169/api/consumo/listarporstatus/Alto%20consumo
+
+
+### Alterar peso do ID 1
+PUT http://localhost:5169/api/consumo/alterar/1
+Content-Type: application/json
+
+{
+  "peso": 85
+}
+
+### Alterar peso do ID 2
+PUT http://localhost:5169/api/consumo/alterar/2
+Content-Type: application/json
+
+{
+  "peso": 60
+}
+
+### Tentar alterar um ID que não existe (teste de erro)
+PUT http://localhost:5169/api/consumo/alterar/999
+Content-Type: application/json
+
+{
+  "peso": 50
+}
