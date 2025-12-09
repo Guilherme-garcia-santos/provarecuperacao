@@ -24,6 +24,11 @@ function App() {
                       Listar consumo água {" "}
                     </Link>
                   </li>
+
+                        <Link to={"/pages/Consumo/ListarConsumoClassificacao"}>
+                      Listar consumo água classificado {" "}
+                    </Link>
+                  </li>
  
  
  <Routes>
@@ -38,6 +43,15 @@ function App() {
                     <Route path="/" element={<ListarConsumo />} />
                     <Route 
                       path="/pages/consumo/listar"
+                      element={<Listar/>}
+                      />
+                </Routes>
+
+
+                 <Routes>
+                    <Route path="/" element={<ListarConsumoClassificado />} />
+                    <Route 
+                      path="/pages/consumo/classificado"
                       element={<Listar/>}
                       />
                 </Routes>
