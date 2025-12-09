@@ -1,14 +1,17 @@
-### Cadastrar João Silva
-POST http://localhost:5169/api/consumo/cadastrar
+### cadastrar joao
+POST http://localhost:5117/api/consumo/cadastrar
 Content-Type: application/json
 
 {
-  "nome": "João Silva",
-  "peso": 70
+    "nome": "João",
+    "peso": 75,
+    "classificacao": "Residencial"
 }
 
+
+
 ### Cadastrar Maria Souza
-POST http://localhost:5169/api/consumo/cadastrar
+POST http://localhost:5117/api/consumo/cadastrar
 Content-Type: application/json
 
 {
@@ -17,7 +20,7 @@ Content-Type: application/json
 }
 
 ### Cadastrar Pedro Costa
-POST http://localhost:5169/api/consumo/cadastrar
+POST http://localhost:5117/api/consumo/cadastrar
 Content-Type: application/json
 
 {
@@ -27,21 +30,21 @@ Content-Type: application/json
 
 
 ### Listar todos os consumos cadastrados
-GET http://localhost:5169/api/consumo/listar
+GET http://localhost:5117/api/consumo/listar
 
 
 ### Listar somente BAIXO consumo
-GET http://localhost:5169/api/consumo/listarporstatus/Baixo%20consumo
+GET http://localhost:5117/api/consumo/listarporstatus/Baixo%20consumo
 
 ### Listar somente CONSUMO ADEQUADO
-GET http://localhost:5169/api/consumo/listarporstatus/Consumo%20adequado
+GET http://localhost:5117/api/consumo/listarporstatus/Consumo%20adequado
 
 ### Listar somente ALTO consumo
-GET http://localhost:5169/api/consumo/listarporstatus/Alto%20consumo
+GET http://localhost:5117/api/consumo/listarporstatus/Alto%20consumo
 
 
 ### Alterar peso do ID 1
-PUT http://localhost:5169/api/consumo/alterar/1
+PUT http://localhost:5117/api/consumo/alterar/1
 Content-Type: application/json
 
 {
@@ -49,7 +52,7 @@ Content-Type: application/json
 }
 
 ### Alterar peso do ID 2
-PUT http://localhost:5169/api/consumo/alterar/2
+PUT http://localhost:5117/api/consumo/alterar/2
 Content-Type: application/json
 
 {
@@ -57,9 +60,11 @@ Content-Type: application/json
 }
 
 ### Tentar alterar um ID que não existe (teste de erro)
-PUT http://localhost:5169/api/consumo/alterar/999
+PUT http://localhost:5117/api/consumo/alterar/999
 Content-Type: application/json
 
 {
   "peso": 50
 }
+
+

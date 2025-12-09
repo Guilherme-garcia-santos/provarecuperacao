@@ -1,15 +1,13 @@
-
-namespace ConsumoDeAguaAPI.Models
+namespace API.Models
 {
     public class RegistroConsumoAgua
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
+        public Guid Id { get; set; }  // Alterado para GUID
+        public string? Nome { get; set; }
         public double Peso { get; set; }
         public double ConsumoIdeal { get; set; }
-        public string Classificacao { get; set; }
+        public string? Classificacao { get; set; }
         public DateTime CriadoEm { get; set; }
-
         public void CalcularConsumoIdeal()
         {
             ConsumoIdeal = Peso * 35;

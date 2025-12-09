@@ -1,24 +1,45 @@
-using ConsumoDeAguaAPI.Data;
+using API.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
-
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<AppDataContext>();
 
-// Configure o banco de dados SQLite
-builder.Services.AddDbContext<AppDataContext>(options =>
-    options.UseSqlite("Data Source=consumo_de_agua.db"));
-
+builder.Services.AddCors(options =>
+    options.AddPolicy("Acesso Total",
+        configs => configs
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod())
+);
 var app = builder.Build();
 
-// Configure o pipeline de requisição
-app.MapPost("/api/consumo/cadastrar", async (AppDataContext db, RegistroConsumoAgua consumo) =>
+
+
+app.MapPost("/api/consumo/cadastrarteste", async (AppDataContext db, [FromBody] RegistroConsumoAgua consumo) =>
 {
     consumo.CalcularConsumoIdeal();
     consumo.CriadoEm = DateTime.Now;
     db.RegistrosConsumo.Add(consumo);
     await db.SaveChangesAsync();
-    return Results.Created($"/api/consumo/{consumo.Id}", consumo.Id);
+    return Results.Created("", consumo);
 });
+
+app.MapPost("/api/consumo/cadastrar", async (AppDataContext db, [FromBody] RegistroConsumoAgua consumo) =>
+{
+    if (consumo == null)
+    {
+        return Results.BadRequest("O corpo da requisição está vazio ou inválido.");
+    }
+
+    consumo.CalcularConsumoIdeal();
+    consumo.CriadoEm = DateTime.Now;
+
+    db.RegistrosConsumo.Add(consumo);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/api/consumo/cadastrar/{consumo.Id}", consumo);
+});
+
 
 app.MapGet("/api/consumo/listar", async (AppDataContext db) =>
     await db.RegistrosConsumo.ToListAsync());
@@ -42,6 +63,6 @@ app.MapPut("/api/consumo/alterar/{id}", async (AppDataContext db, int id, Regist
     await db.SaveChangesAsync();
     return Results.NoContent();
 });
-
+app.UseCors("Acesso Total");
 app.Run();
 
